@@ -1,20 +1,27 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:garments_niyog/page/login_page.dart';
 import 'package:get/get.dart';
 
 
 class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
+
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> {
   @override
-  // void initState() {
-  //   _updateAppbar();
-  //   Get.put(ConfigController()).init();
-  //   super.initState();
-  // }
+  void initState() {
+    _updateAppbar();
+    Future.delayed(Duration(seconds: 3), () {
+      Get.offAll(() => AnimatedSplashScreen(splash: "assets/images/splaseIcon.png", splashIconSize: 500.0,duration: 2000, nextScreen: SignInScreen(),splashTransition: SplashTransition.slideTransition,));
+      
+    });
+    super.initState();
+  }
 
   void _updateAppbar() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -34,42 +41,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-        decoration: BoxDecoration(
-          color: Colors.orange,
-          // gradient: LinearGradient(
-          //   begin: Alignment.topCenter,
-          //   end: Alignment.bottomCenter,
-          //   colors: [
-          //     Colors.orange,
-          //     // hexToColor('#33A0DA'),
-          //     // hexToColor('#AFD6EB'),
-          //     // hexToColor('#FFFFFF'),
-          //     // hexToColor('#FFFFFF'),
-          //   ],
-          // ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // SizedBox(
-              //   height: 20,
-              // ),
-              Container(
-                margin: EdgeInsets.only(right: 30),
-                child: Icon(
-                  Icons.accessibility_outlined,
-                ),
-              ),
-              SizedBox(
-                height: 80,
-              ),
-            ],
-          ),
-        ),
-      ),
+      
     );
   }
 }
